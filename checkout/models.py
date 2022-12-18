@@ -42,7 +42,7 @@ class Order(models.Model):
             self.delivery_cost = 0
         self.grand_total = self.order_total + self.delivery_cost
         self.save()
-
+        
     def save(self, *args, **kwargs):
         """ 
         Override the original save method to set the order number
@@ -56,7 +56,7 @@ class Order(models.Model):
         return self.order_number
 
 
-class orderLineItem(models.Model):
+class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
     product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
     product_size = models.CharField(max_length=2, null=True, blank=True)  # XS, S, M, L, XL
