@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% load  bag_tools %}
+{% load bag_tools %}
 
 {% block page_header %}
     <div class="container header-container">
@@ -74,7 +74,7 @@
 
                             {% for item in bag_items %}
                                 <tr>
-                                    <td class="p-3 w 25">
+                                    <td class="p-3 w-25">
                                         {% include "bag/product-image.html" %}
                                     </td>
                                     <td class="py-3">
