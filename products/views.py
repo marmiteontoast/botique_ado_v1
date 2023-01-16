@@ -5,7 +5,7 @@ from django.db.models import Q
 from django.db.models.functions import Lower
 
 from .models import Product, Category
-from .forms import ProductForm
+from .forms import ProductForm, CommentForm
 
 # Create your views here.
 
@@ -65,43 +65,32 @@ def product_detail(request, product_id):
     """ A view to show individual product details """
 
     product = get_object_or_404(Product, pk=product_id)
+    comments = product.comments.order_by("-created_on")
+    form = CommentForm()
 
     if request.method == 'POST':
         rating = request.POST.get('rating', 3)
         content = request.POST.get('content', '')
-   
+    
+        form = CommentForm(data=request.POST)
+
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.product = product
+            comment.save()
+
+    print(comments)
     context = {
         'product': product,
+        'form': form,
+        'comments': comments,
     }
 
     return render(request, 'products/product_detail.html', context,)
 
 
-# def product_review(request, product_id):
-#     """ A view to show individual product details """
-#     product = get_object_or_404(Product, pk=product_id)
 
-#     if request.method == 'POST':
-#         rating = request.POST.get('rating', 3)
-#         content = request.POST.get('content', '')
-    
-#         if content:
-#             reviews = Review.objects.filter(created_by=request.user, product=product)
-
-#             if reviews.count() > 0:
-#                 review = reviews.first()
-#                 review.rating = rating 
-#                 review.content = content
-#                 review.save()
-#             else:
-#                 review = Review.objects.create(
-#                         product=product,
-#                         rating=rating,
-#                         content=content,
-#                         created_by=request.user
-#                     )
-
-#             return redirect('product', pk=product_id)
 
 
 @login_required
