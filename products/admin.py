@@ -12,6 +12,7 @@ class ProductAdmin(admin.ModelAdmin):
         'price',
         'rating',
         'image',
+        
     )
 
     ordering = ('sku',)
@@ -29,6 +30,12 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ('name', 'body', 'product', 'created_on')
     list_filter = ('created_on',)
     search_fields = ('name', 'email', 'body')
+
+
+class WishlistAdmin(admin.ModelAdmin):
+
+    list_display = ('product', 'created_on')
+    list_filter = ('created_on',)
 
 
 admin.site.register(Product, ProductAdmin)

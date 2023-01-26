@@ -100,6 +100,7 @@
                                     <span class="text-uppercase">Keep Shopping</span>
                                 </a>
                                 <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">
+                                <a href="{% url 'user_wishlist' product.id %}" role="button" class="btn btn-black rounded-0 text-uppercase mt-5" >add to wishlist</a>
                             </div>
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
                             {% endwith %}
@@ -109,7 +110,7 @@
             </div>
         </div>
         <div class="row">
-            <div class=" ">
+            <div class="col-md-8 card mb-4  mt-3 ">
                 <h3>Comments:</h3>
                 <div class="card-body">
                     <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->

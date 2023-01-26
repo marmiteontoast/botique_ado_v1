@@ -159,3 +159,17 @@ def delete_product(request, product_id):
     product.delete()
     messages.success(request, 'Product deleted!')
     return redirect(reverse('products'))
+
+
+@login_required
+def add_to_wishlist(request, product_id):
+
+    product = get_object_or_404(Product, pk=product_id)
+    wishlist = Wishlist()
+    
+    if product.wishlist.filter(id=request.user.id).exists():
+        product.wishlist.remove(request.user)
+    else:
+        product.wishlist.add(request.user)
+
+    messages.info(request, 'The item was added to your wishlist')
