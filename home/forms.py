@@ -1,9 +1,10 @@
 from django import forms
+from django.forms import ModelForm
 
 from .models import Contact
 
 
-class ContactForm(forms.Form):
+class ContactForm(ModelForm):
     name = forms.CharField(max_length=255)
     email = forms.EmailField()
 

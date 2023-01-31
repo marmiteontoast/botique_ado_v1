@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib import messages
+from .models import Contact
 
 from .forms import ContactForm
 
@@ -10,7 +11,7 @@ def index(request):
         form = ContactForm(request.POST)
 
         if form.is_valid():
-            print('the form is valid')
+            form.save()
             messages.success(request, f'thank you well get back to you')
         
     else:
