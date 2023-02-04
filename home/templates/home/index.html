@@ -23,15 +23,18 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container h-100">
         <div class="row">
-            <form method="post" action=".">
-                {% csrf_token %}
-
-                {{ form.as_p }}
-
-                <button>Submit</button>
+            <div class="col">
+                <h3>Stay Connected</h3>
+                <p>Get behind the scenes access to campaigns, collaborations, new products and sales.</p>
+            </div>
+                
+            <form class="col" method="post" action=".">
+                    <div class="form-row align-items-center gap">                       
+                            {% csrf_token %}
+                            {{ form.as_p }}                    
+                    <button class="btn btn-primary mb-2">Submit</button>
+                </div>
             </form>
         </div>
     </div>

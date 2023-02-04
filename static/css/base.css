@@ -73,6 +73,11 @@ body {
     background: #000 !important;
 }
 
+.gap {
+    gap: 2rem;
+    padding-bottom: 54px;
+}
+
 .overlay {
     height: 100%;
     width: 100%;

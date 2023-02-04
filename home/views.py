@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib import messages
 from .models import Contact
+from django import forms
 
 from .forms import ContactForm
 
@@ -20,5 +21,7 @@ def index(request):
     return render(request, 'home/index.html', {
         'form': form
     })
+
+    
 
 
